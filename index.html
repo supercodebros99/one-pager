@@ -1,1 +1,33 @@
-<h1>yo</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="button-wrapper">
+      <button class="confetti-button">don't click</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+      document.getElementsByClassName("confetti-button")[0].addEventListener("click", () => {
+        let canvas = document.createElement("canvas");
+        canvas.width = 1000;
+        canvas.height = 1000;
+        let container = document.getElementsByClassName("button-wrapper")[0];
+        container.appendChild(canvas);
+
+        let confetti_button = confetti.create(canvas);
+        confetti_button({
+          particleCount: 800,
+          spread: 300,
+          startVelocity: 45,
+          scalar: 0.5,
+          ticks: 90,
+          shapes: ['star'],
+          colors: ['d4af37']
+        }).then(() => container.removeChild(canvas));
+      });
+    </script>
+  </body>
+</html>
